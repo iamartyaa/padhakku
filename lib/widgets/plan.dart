@@ -180,7 +180,9 @@ class _myPopopState extends State<myPopop> with SingleTickerProviderStateMixin {
                           fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ),
-                  Divider(height: 5,),
+                  Divider(
+                    height: 5,
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 15),
@@ -247,45 +249,136 @@ class _myPopopState extends State<myPopop> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: selectFile,
-                    child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 10.0),
-                        child: DottedBorder(
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(10),
-                          dashPattern: [10, 4],
-                          strokeCap: StrokeCap.round,
-                          color: Colors.blue.shade400,
-                          child: Container(
-                            width: double.infinity,
-                            height: 80,
-                            decoration: BoxDecoration(
-                                color: Colors.blue.shade50.withOpacity(.3),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Iconsax.folder_open,
-                                  color: Colors.blue,
-                                  size: 40,
+                  _platformFile == null
+                      ? GestureDetector(
+                          onTap: selectFile,
+                          child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 10.0),
+                              child: DottedBorder(
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(10),
+                                dashPattern: [10, 4],
+                                strokeCap: StrokeCap.round,
+                                color: Colors.blue.shade400,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                      color:
+                                          Colors.blue.shade50.withOpacity(.3),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Iconsax.folder_open,
+                                        color: Colors.blue,
+                                        size: 40,
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Text(
+                                        'Select your Resume',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.grey.shade400),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(
-                                  height: 15,
+                              )),
+                        )
+                      : Container(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Selected File',
+                                style: TextStyle(
+                                  color: Colors.grey.shade400,
+                                  fontSize: 15,
                                 ),
-                                Text(
-                                  'Select your Resume',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.grey.shade400),
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade200,
+                                          offset: const Offset(0, 1),
+                                          blurRadius: 3,
+                                          spreadRadius: 2,
+                                        )
+                                      ]),
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.file(
+                                            _file!,
+                                            width: 70,
+                                          )),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              _platformFile!.name,
+                                              style: const TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              '${(_platformFile!.size / 1024).ceil()} KB',
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.grey.shade500),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                                height: 5,
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: Colors.blue.shade50,
+                                                ),
+                                                child: LinearProgressIndicator(
+                                                  value:
+                                                      loadingController.value,
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                    ],
+                                  )),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
                           ),
-                        )),
-                  ),
+                        ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -312,36 +405,39 @@ class _myPopopState extends State<myPopop> with SingleTickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 7,
-                      ),
+                      
                       SizedBox(
-                        width: 54,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: Colors.amber,
-                          child: const Text(
-                            "Apply",
-                            style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 8,
+                        width: 66,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Card(
+                            elevation: 4,
+                            child: InkWell(
+                              onTap: (){},
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                color: Colors.amber,
+                                child: Text('Apply',style: TextStyle(fontSize: 16),),
+                              ),
                             ),
                           ),
-                        ),
+                        )
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      child: const Text("Proceed Payment"),
-                      onPressed: () {
-                        if (widget._formKey.currentState!.validate()) {
-                          widget._formKey.currentState!.save();
-                        }
-                      },
-                      color: Colors.amber,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                        child: const Text("Proceed Payment"),
+                        onPressed: () {
+                          if (widget._formKey.currentState!.validate()) {
+                            widget._formKey.currentState!.save();
+                          }
+                        },
+                        color: Colors.amber,
+                      ),
                     ),
                   )
                 ],

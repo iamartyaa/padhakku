@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "375502713212",
+    "project_id": "fir-ba5d8",
+    "storage_bucket": "fir-ba5d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375502713212:android:5f5c9f29e4b3001889f4f9",
+        "android_client_info": {
+          "package_name": "com.example.padhakku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375502713212-6pim3gcqcd18ftqjcs82airk94altaiv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo5C4GzkwNrjB3f0RACdoeo3FAoS_7PiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375502713212-6pim3gcqcd18ftqjcs82airk94altaiv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
